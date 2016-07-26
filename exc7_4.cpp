@@ -1,25 +1,14 @@
 #include <string>
 #include <iostream>
-#include "Person.h"
 
-ostream& print(ostream &os, const Person &p)
-{
-    os << p.getName() << p.getAddr() << endl;
-    return os;
-}
+using std::cout;
+using std::endl;
+using std::string;
 
-istream &read(istream &is, Person &p)
+struct Person
 {
-    is >> p.name >> p.addr;
-    return is;
-}
-
-string Person::getName() const
-{
-    return name;
-}
-
-string Person::getAddr() const
-{
-    return addr;
-}
+    string name;
+    string addr;
+    string getName() const;
+    string getAddr() const;
+};
