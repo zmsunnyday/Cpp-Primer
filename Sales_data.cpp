@@ -17,11 +17,6 @@ Sales_data& Sales_data::combine(const Sales_data& book2)
     return *this;
 }
 
-double Sales_data::avg_price() const
-{
-    return revenue / units_sold;
-}
-
 std::istream &read(std::istream &is, Sales_data &book)
 {
     double price = 0;
