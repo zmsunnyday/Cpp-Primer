@@ -1,5 +1,15 @@
 #include "Sales_data.h"
 
+Sales_data::Sales_data(const string &s) : bookNo(s) {}
+
+Sales_data::Sales_data(const string &s, unsigned n, double p) :
+                        bookNo(s), units_sold(n), revenue(p * n) {}
+
+Sales_data::Sales_data(std::istream &is)
+{
+    read(is, *this);
+}
+
 Sales_data& Sales_data::combine(const Sales_data& book2)
 {
     units_sold += book2.units_sold;
@@ -23,7 +33,7 @@ std::istream &read(std::istream &is, Sales_data &book)
 std::ostream &print(std::ostream &os, const Sales_data &book)
 {
     os << book.isbn() << " " << book.units_sold << " "
-       << book.revenue << " " << book.avg_price();
+       << book.revenue << " " << book.avg_price() << endl;
     return os;
 }
 

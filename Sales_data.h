@@ -10,6 +10,10 @@ using std::string;
 
 struct Sales_data
 {
+    Sales_data() = default;
+    Sales_data(const string &s);
+    Sales_data(const string &s, unsigned n, double p);
+    Sales_data(std::istream &);
     string isbn() const {return bookNo;}
     Sales_data& combine(const Sales_data&);
     double avg_price() const;
