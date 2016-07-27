@@ -10,6 +10,7 @@ using std::cin;
 
 struct Screen{
 public:
+    friend void window_mgr::clear(screenIndex);
     typedef string::size_type pos;
     Screen() = default;
     Screen(pos ht, pos wd, char a) : height(ht), width(wd),
