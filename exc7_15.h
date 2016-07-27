@@ -10,13 +10,14 @@ using std::ostream;
 
 struct Person
 {
+public:
     Person() = default;
     Person(const string &sName, const string &sAddr) : name(sName), addr(sAddr) {}
-
-    string name;
-    string addr;
     string getName() const;
     string getAddr() const;
+private:
+    string name;
+    string addr;
 };
 #endif // PERSON_H
 
