@@ -1,13 +1,21 @@
 #include "Sales_data.h"
 
-Sales_data::Sales_data(const string &s) : bookNo(s) {}
-
 Sales_data::Sales_data(const string &s, unsigned n, double p) :
-                        bookNo(s), units_sold(n), revenue(p * n) {}
+                        bookNo(s), units_sold(n), revenue(p * n) {
+    cout << "Sales_data(const string &s, unsigned n, double p)" << endl;
+}
 
-Sales_data::Sales_data(std::istream &is)
+Sales_data::Sales_data() : Sales_data("", 0, 0.0) {};
+
+Sales_data::Sales_data(const string &s) : Sales_data(s, 0, 0.0) {
+    cout << "Sales_data(const string &s)" << endl;
+}
+
+
+Sales_data::Sales_data(std::istream &is) : Sales_data("", 0, 0.0)
 {
     read(is, *this);
+    cout << "Sales_data(std::istream &is)" << endl;
 }
 
 Sales_data& Sales_data::combine(const Sales_data& book2)
