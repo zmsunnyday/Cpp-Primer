@@ -11,10 +11,10 @@ using std::string;
 struct Sales_data
 {
 public:
-    Sales_data() = default;
-    Sales_data(const string &s);
+    Sales_data();
     Sales_data(const string &s, unsigned n, double p);
     Sales_data(std::istream &);
+    Sales_data(const string &s);
     string isbn() const {return bookNo;}
     Sales_data& combine(const Sales_data&);
 private:
