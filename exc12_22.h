@@ -1,5 +1,5 @@
-#ifndef EXC12_2_H
-#define EXC12_2_H
+#ifndef EXC12_22_H
+#define EXC12_22_H
 #include <vector>
 #include <string>
 #include <memory>
@@ -15,12 +15,12 @@ using std::weak_ptr;
 using std::runtime_error;
 using std::out_of_range;
 
-class StrBlobPtr;
+class ConstStrBlobPtr;
 
 class StrBlob{
 public:
     typedef vector<string>::size_type size_type;
-    friend class StrBlobPtr;
+    friend class ConstStrBlobPtr;
     StrBlob():data(make_shared<vector<string>>()){}
     StrBlob(initializer_list<string> il):data(make_shared<vector<string>>(il)){}
     bool empty() const {return data -> empty();}
@@ -31,24 +31,24 @@ public:
     string &back();
     const string &front() const;
     const string &back() const;
-    StrBlobPtr begin();
-    StrBlobPtr end();
+    ConstStrBlobPtr begin() const;
+    ConstStrBlobPtr end() const;
 private:
     shared_ptr<vector<string>> data;
     void check(size_type i, const string &msg) const;
 };
 
-class StrBlobPtr
+class ConstStrBlobPtr
 {
 public:
     typedef vector<string>::size_type size_type;
-    StrBlobPtr() : curr(0){}
-    StrBlobPtr(StrBlob &a, size_type sz = 0) : wptr(a.data), curr(sz){}
-    string &deref() const;
-    StrBlobPtr& incr();
+    ConstStrBlobPtr() : curr(0){}
+    ConstStrBlobPtr(const StrBlob &a, size_type sz = 0) : wptr(a.data), curr(sz){}
+    const string &deref() const;
+    ConstStrBlobPtr& incr();
 private:
-    shared_ptr<vector<string>> check(size_type, const string&) const;
-    weak_ptr<vector<string>> wptr;
+    const shared_ptr<const vector<string>> check(size_type, const string&) const;
+    weak_ptr<const vector<string>> wptr;
     size_type curr;
 };
 
@@ -88,13 +88,13 @@ inline void StrBlob::check(size_type i, const string &msg) const
         throw std::out_of_range(msg);
 }
 
-inline string &StrBlobPtr::deref() const
+inline const string &ConstStrBlobPtr::deref() const
 {
     auto a = check(curr, "deref out of range!");
     return (*a)[curr];
 }
 
-inline shared_ptr<vector<string>> StrBlobPtr::check(size_type i, const string &msg) const
+inline const shared_ptr<const vector<string>> ConstStrBlobPtr::check(size_type i, const string &msg) const
 {
     auto ret = wptr.lock();
     if(!ret)
@@ -104,21 +104,21 @@ inline shared_ptr<vector<string>> StrBlobPtr::check(size_type i, const string &m
     return ret;
 }
 
-inline StrBlobPtr& StrBlobPtr::incr()
+inline ConstStrBlobPtr& ConstStrBlobPtr::incr()
 {
     check(curr, "incr out of range!");
     ++curr;
     return *this;
 }
 
-inline StrBlobPtr StrBlob::begin()
+inline ConstStrBlobPtr StrBlob::begin() const
 {
-    return StrBlobPtr(*this);
+    return ConstStrBlobPtr(*this);
 }
 
-inline StrBlobPtr StrBlob::end()
+inline ConstStrBlobPtr StrBlob::end() const
 {
-    return StrBlobPtr(*this, data -> size());
+    return ConstStrBlobPtr(*this, data -> size());
 }
 
 #endif
