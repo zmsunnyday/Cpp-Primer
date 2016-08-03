@@ -1,18 +1,21 @@
 #include "exc12_2.h"
+#include <iostream>
 
-StrBlob::StrBlob():data(make_shared<vector<string>>()) {}
-StrBlob::StrBlob(initializer_list<string> il):
-                data(make_shared<vector<string>>(il)){}
-void StrBlob::pop_back(){
-    data -> pop_back();
-}
-string& StrBlob::front()
-{
-    return *(vector.begin());
-}
+using std::cout;
+using std::endl;
 
-string& StrBlob::back()
+int main()
 {
-    return *(vector.end());
+    StrBlob a({"hello", "world", "nihao"});
+    StrBlob b(a);
+    cout << a.size() << b.size() << endl;
+    a.pop_back();
+    cout << a.size() << b.size() << endl;
+    b.pop_back();
+    cout << a.size() << b.size() << endl;
+    cout << a.back() << endl;
+    const StrBlob c;
+    cout << c.back() << endl;
+    return 0;
 }
 
