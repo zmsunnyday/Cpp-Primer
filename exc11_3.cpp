@@ -17,7 +17,11 @@ int main(int argc, char* argv[])
     map<string, int> wordNum;
     while(iFile >> s)
     {
-        ++wordNum[s];
+        auto ret = wordNum.insert({s, 1});
+        if(!ret.second)
+        {
+            ++ret.first -> second;
+        }
     }
     for(auto &c : wordNum)
     {
