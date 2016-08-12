@@ -80,4 +80,11 @@ Sales_data& Sales_data::operator=(const Sales_data& book)
     return *this;
 }
 
+Sales_data& Sales_data::operator=(const string &s)
+{
+    bookNo = s;
+    units_sold = 0;
+    revenue = 0.0;
+    return *this;
+}
 

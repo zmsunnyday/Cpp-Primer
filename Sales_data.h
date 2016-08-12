@@ -25,6 +25,7 @@ public:
     Sales_data& combine(const Sales_data&);
     Sales_data& operator+=(const Sales_data&);
     Sales_data& operator=(const Sales_data&);
+    Sales_data& operator=(const string&);
 private:
     double avg_price() const;
     string bookNo;
