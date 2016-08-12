@@ -2,7 +2,6 @@
 
 Sales_data::Sales_data(const string &s, unsigned n, double p) :
                         bookNo(s), units_sold(n), revenue(p * n) {
-    cout << "Sales_data(const string &s, unsigned n, double p)" << endl;
 }
 
 Sales_data::Sales_data() : Sales_data("", 0, 0.0) {};
