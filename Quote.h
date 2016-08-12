@@ -8,9 +8,9 @@ using std::string;
 class Quote{
 public:
     Quote() = default;
-    Quote(const string &s, double p): bookNo(s), price(p){}
+    Quote(const string &s, const double p): bookNo(s), price(p){}
     string isbn() const {return bookNo;}
-    virtual double net_price(std::size_t n) const
+    virtual double net_price(const std::size_t n) const
                     {return n * price;}
     virtual ~Quote() = default;
 private:
