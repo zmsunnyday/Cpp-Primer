@@ -2,7 +2,9 @@
 #define QUOTE_H
 
 #include <string>
+#include <iostream>
 
+using std::ostream;
 using std::string;
 
 class Quote{
@@ -13,6 +15,10 @@ public:
     virtual double net_price(const std::size_t n) const
                     {return n * price;}
     virtual ~Quote() = default;
+    virtual void debug(ostream& os) const
+    {
+        os << bookNo << " " << price;
+    }
 private:
     string bookNo;
 protected:
