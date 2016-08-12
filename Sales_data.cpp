@@ -45,5 +45,39 @@ Sales_data add(const Sales_data &book1, const Sales_data &book2)
     result.combine(book2);
     return result;
 }
+ostream& operator<<(ostream& os, const Sales_data& book)
+{
+    os << book.bookNo << " " << book.units_sold << " " << book.revenue;
+    return os;
+}
+
+istream& operator>>(istream& is, Sales_data& book)
+{
+    double p;
+    is >> book.bookNo >> book.units_sold >> p;
+    book.revenue = book.units_sold * p;
+    return is;
+}
+
+Sales_data operator+(const Sales_data& book1, const Sales_data& book2)
+{
+    Sales_data sum = book1;
+    sum.units_sold += book2.units_sold;
+    sum.revenue += book2.revenue;
+    return sum;
+}
+
+Sales_data& Sales_data::operator+=(const Sales_data& book)
+{
+    units_sold += book.units_sold;
+    revenue += book.revenue;
+    return *this;
+}
+Sales_data& Sales_data::operator=(const Sales_data& book)
+{
+    units_sold = book.units_sold;
+    revenue = book.revenue;
+    return *this;
+}
 
 
