@@ -1,23 +1,15 @@
-#include <list>
 #include <vector>
+#include <list>
 #include <string>
-#include <iostream>
 
-using std::cout;
-using std::endl;
-using std::list;
 using std::vector;
 using std::string;
+using std::list;
 
 int main()
 {
-    list<const char *> myList = {"Hello", "World", "!"};
-    vector<string> myVector = {"nihao", "shijie", "!"};
-    myVector.assign(myList.cbegin(), myList.cend());
-    for(auto &a : myVector)
-    {
-    cout << a << " ";
-    }
-    cout << endl;
+    list<const char*> slist = {"sha", "nihao", "haha"};
+    vector<string> svec;
+    svec.assign(slist.cbegin(), slist.cend());
     return 0;
 }
