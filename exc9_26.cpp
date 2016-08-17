@@ -12,15 +12,15 @@ using std::end;
 int main()
 {
     int ai[] = {0, 1, 1, 5, 8, 2, 3, 13, 21, 58};
-    vector<int> ivec = {0, 1, 1, 5, 8, 2, 3, 13, 21, 58};
-    list<int> ilist = {0, 1, 1, 5, 8, 2, 3, 13, 21, 58};
+    vector<int> ivec(begin(ai), end(ai));
+    list<int> ilist(begin(ai), end(ai));
     auto itv1 = ivec.begin();
     auto itl1 = ilist.begin();
     while(itv1 != ivec.end())
     {
         if(!(*itv1 % 2))
         {
-            ivec.erase(itv1);
+            itv1 = ivec.erase(itv1);
         }
         else
             ++itv1;
@@ -29,7 +29,7 @@ int main()
     {
         if(*itl1 % 2)
         {
-            ilist.erase(itl1);
+            itl1 = ilist.erase(itl1);
         }
         else
             ++itl1;
