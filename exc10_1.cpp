@@ -1,20 +1,21 @@
 #include <algorithm>
-#include <iostream>
 #include <vector>
+#include <iostream>
 
 using std::cin;
 using std::cout;
-using std::endl;
+using std::count;
 using std::vector;
 
 int main()
 {
     vector<int> ivec;
-    int ivar;
-    while(cin >> ivar)
+    int i;
+    int a = 5;
+    while(cin >> i)
     {
-        ivec.push_back(ivar);
+        ivec.push_back(i);
     }
-    cout << "The number of '2' is:" << count(ivec.cbegin(), ivec.cend(), 2) << endl;
+    cout << "number of " << a << " is" << ":" << count(ivec.cbegin(), ivec.cend(), a) << std::endl;
     return 0;
 }

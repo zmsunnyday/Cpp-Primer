@@ -1,23 +1,24 @@
-#include <vector>
-#include <iostream>
 #include <algorithm>
+#include <list>
 #include <string>
+#include <iostream>
 
 using std::cin;
 using std::cout;
-using std::endl;
+using std::count;
+using std::list;
 using std::string;
-using std::vector;
 
 int main()
 {
-    vector<string> svec;
-    string s;
-    while(cin >> s)
+    list<string> sList;
+    string i;
+    string a = "haha";
+    while(cin >> i)
     {
-        svec.push_back(s);
+        sList.push_back(i);
     }
-
-    cout << count(svec.cbegin(), svec.cend(), "hello") << endl;
+    cout << "number of " << a << " is" << ":" << count(sList.cbegin(), sList.cend(), a) << std::endl;
     return 0;
 }
+
